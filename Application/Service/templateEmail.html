@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Email Template</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f6f6;
+        }
+        table {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-collapse: collapse;
+        }
+        h1, h2, p {
+            margin: 0 0 15px 0;
+        }
+        .header {
+            background-color: #ECEFF4;
+            color: white;
+            padding: 10px 0;
+            text-align: center
+        }
+        .content {
+            padding: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #3281EA;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td class="header">
+                <h1 class="highlight">Contato recebido</h1>
+            </td>
+        </tr>
+        <tr>
+            <td class="content">
+                <h2>Nome do contato: <span class="highlight">{name}</span></h2>
+                <h2>E-mail do contato: <span class="highlight">{email}</span></h2>
+                <h3>Mensagem enviada pelo contato <span class="highlight">{name}</span> pelo serviço <span class="highlight">{servico}:</span></h3>
+                <p>{message}</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
