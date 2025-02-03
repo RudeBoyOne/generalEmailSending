@@ -12,6 +12,7 @@ $dotenv->load();
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Origin Content-Type, Accept");
 
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
