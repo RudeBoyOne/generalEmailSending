@@ -17,6 +17,11 @@ header("Access-Control-Allow-Headers: Origin Content-Type, Accept");
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
+if ($method == "OPTIONS") {
+    header("HTTP/1.1 204 No Content");
+    exit();
+}
+
 switch ($uri) {
     case '/leads':
         $leadController = new LeadController();
