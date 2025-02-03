@@ -33,9 +33,9 @@ jobs:
           SERVER: ${{ secrets.SERVER }}
           PORT: ${{ secrets.SERVER_PORT }}
           REMOTE_DIR: ${{ secrets.REMOTE_DIR }}
-          FILE: ${{ secrets.IGNORE_FILE }}
+          FILES: ${{ secrets.IGNORE_FILES }}
         run: |
             rsync -avz --delete \
-            --exclude $FILE \
+            $(for exclude in $FILES; do echo --exclude $exclude; done) \
             -e "ssh -o StrictHostKeyChecking=no -p $PORT" \
             . $USERNAME@$SERVER:$REMOTE_DIR
