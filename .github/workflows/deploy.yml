@@ -1,4 +1,4 @@
-name: 🚀 Deploy Application
+name: 🚀 Deploy General Email Sending
 
 on:
   push:
@@ -31,7 +31,9 @@ jobs:
         env:
           USERNAME: ${{ secrets.USERNAME }}
           SERVER: ${{ secrets.SERVER }}
+          PORT: ${{ secrets.SERVER_PORT }}
           REMOTE_DIR: ${{ secrets.REMOTE_DIR }}
         run: |
-          ssh -o StrictHostKeyChecking=no $USERNAME@$SERVER "mkdir -p $REMOTE_DIR"
-          rsync -avz --exclude='.git*' --delete-after . $USERNAME@$SERVER:$REMOTE_DIR
+            rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no -p PORT" \
+            . USERNAME@SERVER:REMOTE_DIR
