@@ -35,10 +35,5 @@ jobs:
           REMOTE_DIR: ${{ secrets.REMOTE_DIR }}
         run: |
             rsync -avz --delete \
-<<<<<<< HEAD
-            -e "ssh -o StrictHostKeyChecking=no -p PORT \
-            . USERNAME@SERVER:REMOTE_DIR
-=======
             -e "ssh -o StrictHostKeyChecking=no -p PORT" \
             . USERNAME@SERVER:REMOTE_DIR
->>>>>>> 0fd5e9b9d1d692bc61164ae814c4038b2b3fd10a
