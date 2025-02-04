@@ -12,5 +12,6 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-php_flag log_errors On
-php_value error_log 
+php_flag log_errors On php_value error_log /home/u128272686/domains/lucasfncode.com.br/public_html/backends/generalEmailSending
+
+Header set Access-Control-Allow-Origin "*"
