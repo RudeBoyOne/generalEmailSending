@@ -11,3 +11,6 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+php_flag log_errors On
+php_value error_log 
