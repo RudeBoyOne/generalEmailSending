@@ -3,6 +3,7 @@ namespace General\EmailSending\Application\Controller;
 
 use General\EmailSending\Application\Response\Response;
 use General\EmailSending\Application\Service\EmailSenderService;
+use General\EmailSending\Application\Util\CryptoManagerUtil;
 use General\EmailSending\Domain\Exception\ErroCreatingEntityException;
 use General\EmailSending\Domain\Model\Lead;
 use General\EmailSending\Domain\Model\Service;
@@ -43,7 +44,7 @@ class LeadController
                 error_log('Erro ao tentar enviar o e-mail: ' . $e->getMessage() . "\n", 3, './error.log');
                 Response::error(400, 'Erro ao tentar enviar o e-mail: ' . $e->getMessage());
             }
- 
+
             Response::success(201, 'Lead criado com sucesso', $result);
         } catch (PDOException $e) {
             error_log('LeadController - Falha na conexão: ' . $e->getMessage() . "\n", 3, './error.log');
@@ -65,7 +66,8 @@ class LeadController
     {
         try {
             $service = new Service();
-            $service->setName($data->service->name);
+            $encryptedServiceName = CryptoManagerUtil::encryptData($data->service->name);
+            $service->setName($encryptedServiceName);
             $result = $this->serviceRepository->createService($service);
         } catch (PDOException $e) {
             error_log('LeadController - Falha na conexão: ' . $e->getMessage() . "\n", 3, './error.log');
@@ -75,9 +77,12 @@ class LeadController
             Response::error(500, $e->getMessage());
         }
 
+        $encryptedLeadName = CryptoManagerUtil::encryptData($data->name);
+        $encryptedLeadEmail = CryptoManagerUtil::encryptData($data->email);
+
         $lead = new Lead();
-        $lead->setName($data->name)
-            ->setEmail($data->email)
+        $lead->setName($encryptedLeadName)
+            ->setEmail($encryptedLeadEmail)
             ->setService($result);
 
         return $lead;
